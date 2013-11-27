@@ -415,7 +415,7 @@ typedef unsigned short uip_stats_t;
 #define RPL_BORDER_ROUTER           1
 #endif
 #define RPL_CONF_STATS              0
-#define UIP_CONF_BUFFER_SIZE	 1300
+//#define UIP_CONF_BUFFER_SIZE	 1300
 //#define NBR_TABLE_CONF_MAX_NEIGHBORS       12
 //#define UIP_CONF_MAX_ROUTES     12
 

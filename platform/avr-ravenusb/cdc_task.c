@@ -78,6 +78,10 @@
 #include "settings.h"
 #endif
 
+#if UIP_CONF_IPV6_RPL
+#include "rpl-private.h"
+#endif
+
 #define BUF ((struct uip_eth_hdr *)&uip_buf[0])
 #define PRINTF printf
 #define PRINTF_P printf_P
@@ -604,7 +608,7 @@ extern uip_ds6_netif_t uip_ds6_if;
 				uip_ds6_route_t *route;
 		    for(route = uip_ds6_route_head();
 		        route != NULL;
-		        route = uip_ds6_route_next(r)) {
+		        route = uip_ds6_route_next(route)) {
 					ipaddr_add(&route->ipaddr);
 					PRINTF_P(PSTR("/%u (via "), route->length);
 					ipaddr_add(uip_ds6_route_nexthop(route));
@@ -625,7 +629,7 @@ extern uip_ds6_netif_t uip_ds6_if;
 				break;
             
             case 'L':
-                rpl_local_repair(rpl_get_any_dag());
+                rpl_local_repair(rpl_get_any_dag()->instance);
                  PRINTF_P(PSTR("Local repair initiated\n\r")); 
                  break;
  
